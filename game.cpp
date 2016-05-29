@@ -15,8 +15,7 @@ using  namespace std;
 
 // https://goo.gl/IMBdAn
 
-
-int linhas = 23, colunas = 64, x = linhas/2 , y = colunas/2;
+int linhas = 23, colunas = 64;
 
 int rand_i(){
     srand(time(NULL));
@@ -35,7 +34,7 @@ int main(){
 	char movimento;
 	char A[linhas][colunas];
 
-    snake cobra(x, y);
+    snake cobra(linhas/2, colunas/2);
 
     bola ponto(rand_i(), rand_j());
 
@@ -51,9 +50,15 @@ int main(){
     	}
 	}
 
-	A[x][y] = cobra.getsimbolo();
-
 	while(true){
+
+        A[cobra.getcabeca().geti()][cobra.getcabeca().getj()] = cobra.getsimbolo_cabeca();
+
+        for(int c = 0; c < (cobra.gettamanho()-1); ++c){
+            int i = cobra.getcorpo(c).geti();
+            int j = cobra.getcorpo(c).getj();
+            A[i][j] = cobra.getsimbolo_corpo();
+        }
 
     	for(int i = 0; i < linhas; i++){
         	for(int j = 0; j < colunas; j++){
@@ -62,24 +67,28 @@ int main(){
         	cout << endl;
     	}
 
+        // cobra.print();
+
     	cin >> movimento;
     	switch(movimento){
         	case 'w':
-            	x--;
+                cobra.setdirecao(4);
+                cobra.andar();
             	break;
         	case 'a':
-            	y--;
+            	cobra.setdirecao(3);
+                cobra.andar();
             	break;
         	case 's':
-            	x++;
+            	cobra.setdirecao(2);
+                cobra.andar();
             	break;
         	case 'd':
-            	y++;
+            	cobra.setdirecao(1);
+                cobra.andar();
             	break;
     	}
 
-
-    	A[x][y] = cobra.getsimbolo();
     	//Limpatela
        
     	for(int i = 0; i < 70; i++){
