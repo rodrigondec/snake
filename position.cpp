@@ -36,3 +36,7 @@ bool position::equals(int i, int j){
 	}
 	return false;
 }
+
+void position::print(){
+	std::cout<<"("<<valor_i<<", "<<valor_j<<")";
+}

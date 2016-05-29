@@ -20,6 +20,8 @@ public:
 
 	bool equals(position x);
 	bool equals(int i, int j);
+
+	void print();
 };
 
 #endif
