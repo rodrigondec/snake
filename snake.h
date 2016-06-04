@@ -10,7 +10,6 @@ class snake{
 
 private:
 	int direcao;
-	int tamanho;
 	char simbolo_cabeca;
 	char simbolo_corpo;
 

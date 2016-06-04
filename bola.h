@@ -16,6 +16,9 @@ public:
 
 	char getsimbolo();
 
+	void seti(int i);
+	void setj(int j);
+
 	position getposicao();
 };
 

@@ -2,7 +2,6 @@ snake::snake(int i, int j){
 	direcao = 1;
 	simbolo_cabeca = '0';
 	simbolo_corpo = 'x';
-	tamanho = 3;
 
 	cabeca.seti(i);
 	cabeca.setj(j);
@@ -16,49 +15,32 @@ snake::snake(int i, int j){
 
 snake::~snake(){}
 
-void snake::comer(){
-	tamanho++;
-}
-
 void snake::andar(){
-
 	int i = cabeca.geti();
 	int j = cabeca.getj();
 
+	// position aux(cabeca.geti(), cabeca.getj());
+
 	vector<position>::iterator it = corpo.begin();
+
+	corpo.insert(it, cabeca);
 
 	switch(direcao){
     	case 1:
         	j++;
-
-        	corpo.insert(it, cabeca);
-
         	cabeca.setj(j);
-
         	break;
     	case 2:
         	i++;
-
-        	corpo.insert(it, cabeca);
-
         	cabeca.seti(i);
-
         	break;
     	case 3:
         	j--;
-
-        	corpo.insert(it, cabeca);
-
         	cabeca.setj(j);
-
         	break;
     	case 4:
         	i--;
-
-        	corpo.insert(it, cabeca);
-
         	cabeca.seti(i);
-
         	break;
 	}
 }
@@ -82,7 +64,7 @@ void snake::cortar(){
 }
 
 int snake::gettamanho(){
-	return tamanho;
+	return corpo.size()+1;
 }
 
 char snake::getsimbolo_cabeca(){
